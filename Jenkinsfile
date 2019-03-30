@@ -39,6 +39,11 @@ pipeline {
                     input('Do you want to proceed?')
                  }
                  }
+                   stage('Load Testing') {
+                 steps {
+                    echo 'Load Testing Completed'   
+                 }
+                 }
 
                  stage('Staging') {
                  steps {
