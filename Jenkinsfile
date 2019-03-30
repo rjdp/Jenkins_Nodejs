@@ -1,4 +1,3 @@
-  
 pipeline {
          agent any
          stages {
@@ -15,31 +14,25 @@ pipeline {
                  }
 
                  }
-
                  stage('Browser Testing') {
                  parallel { 
                             stage('Chrome testing') {
-                          
-                                steps {
-                    input('Did Chrome testing pass ?')
-                 }
-                           
+                           steps {
+                                input('Did Chrome testing pass ?')
+                           }
                            }
                             stage('Internet Explorer Testing') {
-                              
                               steps {
-                    input('Did IE testing pass ?')
-                                
+                                input('Did IE testing pass ?')
                               }
                            }
                            }
                            }
 
 
-                 stage('Acceptance Testing') {
+                           stage('Acceptance Testing') {
                  steps {
                     echo 'Unit Test Passed'                 }
-                 }
                  }
                  stage('Exploratory Testing') {
                  steps {
@@ -62,5 +55,5 @@ pipeline {
                     echo 'deployed on Production'
                  }
                  }
-                 
-             } 
+                 }
+              }
