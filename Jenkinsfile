@@ -8,19 +8,22 @@ pipeline {
                  }
                  }
                  stage('Integration Testing') {
+                 steps {
+
                   echo 'Running Integrations'
                   echo 'Passed Integrations Testing'
+                 }
 
                  }
 
                  stage('Browser Testing') {
                  parallel { 
                             stage('Chrome testing') {
-                           steps {
+                          
                                 steps {
                     input('Did Chrome testing pass ?')
                  }
-                           }
+                           
                            }
                             stage('Internet Explorer Testing') {
                               
@@ -60,5 +63,5 @@ pipeline {
                  }
                  }
                  
-              
+             } 
 }
