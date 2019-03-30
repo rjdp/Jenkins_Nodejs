@@ -1,46 +1,64 @@
-	
+  
 pipeline {
          agent any
          stages {
-                 stage('One') {
+                 stage('Unit Testing') {
                  steps {
-                     echo 'Start the Test'
+                     echo 'Unit Test Passed'
                  }
                  }
-                 stage('Two') {
-                 steps {
-                    input('Do you want to proceed?')
+                 stage('Integration Testing') {
+                  echo 'Running Integrations'
+                  echo 'Passed Integrations Testing'
+
                  }
-                 }
-                 stage('Three') {
-                 when {
-                       not {
-                            branch "master"
-                       }
-                 }
-                 steps {
-                       echo "Hello"
-                 }
-                 }
-                 stage('Four') {
+
+                 stage('Browser Testing') {
                  parallel { 
-                            stage('Unit Test') {
+                            stage('Chrome testing') {
                            steps {
-                                echo "Running the unit test..."
+                                steps {
+                    input('Did Chrome testing pass ?')
+                 }
                            }
                            }
-                            stage('Integration test') {
-                              agent {
-                                    docker {
-                                            reuseNode true
-                                            image 'ubuntu'
-                                           }
-                                    }
+                            stage('Internet Explorer Testing') {
+                              
                               steps {
-                                echo "Running the integration test..."
+                    input('Did IE testing pass ?')
+                                
                               }
                            }
                            }
                            }
-              }
+
+
+                 stage('Acceptance Testing') {
+                 steps {
+                    echo 'Unit Test Passed'                 }
+                 }
+                 }
+                 stage('Exploratory Testing') {
+                 steps {
+                    input('Do you want to proceed?')
+                 }
+                 }
+
+                 stage('Staging') {
+                 steps {
+                    input('Do you want to proceed?')
+                 }
+                 }
+                 stage('Preproduction Deployment') {
+                 steps {
+                    input('Do you want to proceed?')
+                 }
+                 }
+                 stage('Production Deployment') {
+                 steps {
+                    echo 'deployed on Production'
+                 }
+                 }
+                 
+              
 }
